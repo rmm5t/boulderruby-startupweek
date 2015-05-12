@@ -10,3 +10,12 @@ guard :shell do
     end unless $?.success?
   end
 end
+
+coffeescript_options = {
+  input: "./",
+  output: "js",
+  patterns: [/^\w+\.coffee$/]
+}
+guard :coffeescript, coffeescript_options do
+  coffeescript_options[:patterns].each { |pattern| watch(pattern) }
+end
