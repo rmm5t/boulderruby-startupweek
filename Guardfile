@@ -1,5 +1,5 @@
 guard :shell do
-  watch(/^\w+\.rb$/) do |m|
+  watch(/^cloudinary.rb$/) do |m|
     command = "ruby #{m[0]} 2>&1"
     puts "Running: #{command}"
     puts output = `ruby #{m[0]} 2>&1`
