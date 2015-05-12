@@ -15,7 +15,10 @@ post "/pusher/auth" do
   Pusher[params[:channel_name]].authenticate(params[:socket_id]).to_json
 end
 
-get "/pusher/config.js" do
+get "/config.js" do
   content_type :js
-  "window.pusher = new Pusher('#{Pusher.default_client.key}')"
+  <<-EOF
+window.pusher = new Pusher("#{Pusher.default_client.key}");
+jQuery.embedly.defaults.key = "#{ENV["EMBEDLY_KEY"]}";
+EOF
 end

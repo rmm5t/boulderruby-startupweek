@@ -50,25 +50,38 @@
   };
 
   displayMessage = function(channelName, data) {
-    var messages;
+    var link, messages;
+    bumpUnread(channelName);
     messages = $("#" + channelName + " .messages");
-    messages.append("<p>" + data.body + "</p>");
-    return bumpUnread(channelName);
+    if (data.body.match(/^http[^\s<>]+\.(png|jpe?g|gif)$/)) {
+      return messages.append($("<p></p>").html("<img src='" + data.body + "'/>"));
+    } else if (data.body.match(/^http[^\s<>]+$/)) {
+      link = $("<a class='oembed' href='" + data.body + "' target='_blank'>" + data.body + "</a>");
+      messages.append($("<p></p>").append(link));
+      if ($.embedly.defaults.key) {
+        return link.embedly({
+          query: {
+            maxwidth: 600
+          }
+        });
+      }
+    } else {
+      return messages.append($("<p></p>").text(data.body));
+    }
   };
 
   pushMessage = function(channelName, data) {
-    var sub;
     sub = findSub(channelName);
     sub.channel.trigger("client-new-message", data);
     return displayMessage(channelName, data);
   };
 
   $(document).ready(function() {
-    var i, len, panes, sub, tabs;
+    var j, len1, panes, tabs;
     tabs = $("#tabs");
     panes = $("#panes");
-    for (i = 0, len = subscriptions.length; i < len; i++) {
-      sub = subscriptions[i];
+    for (j = 0, len1 = subscriptions.length; j < len1; j++) {
+      sub = subscriptions[j];
       tabs.append("<li id='" + sub.channel.name + "-tab' role='presentation'> <a href='#" + sub.channel.name + "' data-channel='" + sub.channel.name + "' role='tab' data-toggle='tab'>#" + sub.name + " <span class='badge'></span></a> </li>");
       panes.append("<div role='tabpanel' class='tab-pane' id='" + sub.channel.name + "'> <div class='entry container-fluid'> <form data-channel='" + sub.channel.name + "'> <input type='text' class='input-lg form-control' /> </form> </div> <div class='messages container-fluid'> <h1>#" + sub.name + "</h1> <p class='text-muted'>" + sub.description + "<p> </div> </div>");
     }
@@ -80,13 +93,13 @@
       event.preventDefault();
       input = $(this).find("input");
       name = $(this).data("channel");
-      body = input.val();
-      input.val("");
+      body = $.trim(input.val());
       if (body) {
-        return pushMessage(name, {
+        pushMessage(name, {
           body: body
         });
       }
+      return input.val("");
     });
     return tabs.find("li a").first().click();
   });

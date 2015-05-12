@@ -26,9 +26,16 @@ activateChannel = (channelName) ->
   $("##{channelName}").find("input").focus()
 
 displayMessage = (channelName, data) ->
-  messages = $("##{channelName} .messages")
-  messages.append("<p>#{data.body}</p>")
   bumpUnread(channelName)
+  messages = $("##{channelName} .messages")
+  if data.body.match /^http[^\s<>]+\.(png|jpe?g|gif)$/
+    messages.append($("<p></p>").html("<img src='#{data.body}'/>"))
+  else if data.body.match /^http[^\s<>]+$/
+    link = $("<a class='oembed' href='#{data.body}' target='_blank'>#{data.body}</a>")
+    messages.append($("<p></p>").append(link))
+    link.embedly(query: { maxwidth: 600 }) if $.embedly.defaults.key
+  else
+    messages.append($("<p></p>").text(data.body))
 
 pushMessage = (channelName, data) ->
   sub = findSub(channelName)
@@ -65,8 +72,8 @@ $(document).ready ->
     event.preventDefault()
     input = $(this).find("input")
     name  = $(this).data("channel")
-    body  = input.val()
-    input.val("")
+    body  = $.trim(input.val())
     pushMessage(name, { body: body }) if body
+    input.val("")
 
   tabs.find("li a").first().click()

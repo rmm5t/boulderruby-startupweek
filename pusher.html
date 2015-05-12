@@ -4,8 +4,9 @@
   <title>Pusher Demo</title>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="http://cdn.embed.ly/jquery.embedly-3.1.1.min.js"></script>
   <script src="http://js.pusher.com/2.2/pusher.min.js"></script>
-  <script src="/pusher/config.js"></script>
+  <script src="/config.js"></script>
   <script src="/js/pusher.js"></script>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
   <style>
@@ -13,6 +14,8 @@
     #panes { position: absolute; top: 70px; bottom: 0; left: 0; right: 0; overflow-y: scroll; }
     .messages { position: absolute; bottom: 75px; left: 0; right: 0; }
     .entry { position: absolute; bottom: 15px; left: 0; right: 0; }
+    img { max-width: 600px; }
+    .embed img { max-width: 200px !important; } .embed a { display: block; } .embed .description { color: #777; }
   </style>
   <body>
     <div class="container-fluid" role="tabpanel">
