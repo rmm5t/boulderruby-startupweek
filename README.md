@@ -12,9 +12,9 @@ Presented to [Boulder Ruby, May 2015](http://www.meetup.com/boulder_ruby_group/e
 * [Stripe](https://stripe.com/)
 * [Recurly](https://recurly.com/) / [Spreedly](https://spreedly.com/) / [Chargify](https://www.chargify.com/)
 * [Codeship](https://codeship.com/) / [Travis CI](https://travis-ci.com/) / [Semaphore](https://semaphoreci.com/)
-* [Cloudinary](http://cloudinary.com/)
-* [Pusher](https://pusher.com/)
-* [Embed.ly](http://embed.ly/)
+* [Cloudinary](http://cloudinary.com/) (with demo)
+* [Pusher](https://pusher.com/) (with demo)
+* [Embed.ly](http://embed.ly/) (with demo)
 
 ## Recommended Services to Boost Ops
 
