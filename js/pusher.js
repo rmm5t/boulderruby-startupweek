@@ -11,9 +11,6 @@
       name: "random",
       description: "A place for non-work banter, links, articles of interest, humor or anything else which you'd like concentrated in some place other than work-related channels."
     }, {
-      name: "yac",
-      description: "Yet Another Channel."
-    }, {
       name: "music",
       description: "A place to discuss great music."
     }
