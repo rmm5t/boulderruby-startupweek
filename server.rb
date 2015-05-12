@@ -7,7 +7,7 @@ require "yaml"
 set :public_folder, "./"
 
 get "/" do
-  File.read("index.html")
+  File.read("pusher.html")
 end
 
 post "/pusher/auth" do
