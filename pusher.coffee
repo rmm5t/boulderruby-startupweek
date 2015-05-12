@@ -4,9 +4,14 @@ $ = jQuery
 # Pusher.log = (message) -> if (window.console && window.console.log) then window.console.log(message)
 
 window.subscriptions = [
-  { name: "general", channel: pusher.subscribe('private-general'), description: "This channel is for team-wide communication and announcements. All team members are in this channel." }
-  { name: "random",  channel: pusher.subscribe('private-random'),  description: "A place for non-work banter, links, articles of interest, humor or anything else which you'd like concentrated in some place other than work-related channels." }
+  { name: "general", description: "This channel is for team-wide communication and announcements. All team members are in this channel." }
+  { name: "random",  description: "A place for non-work banter, links, articles of interest, humor or anything else which you'd like concentrated in some place other than work-related channels." }
+  { name: "yac",     description: "Yet Another Channel." }
+  { name: "music",   description: "A place to discuss great music." }
 ]
+
+for sub in subscriptions
+  sub.channel = pusher.subscribe("private-#{sub.name}")
 
 pusher.bind "client-new-message", (data) ->
   displayMessage($.parseJSON(event.data).channel, data)

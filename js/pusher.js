@@ -1,31 +1,39 @@
 (function() {
-  var $, activateChannel, bumpUnread, displayMessage, findSub, pushMessage;
+  var $, activateChannel, bumpUnread, displayMessage, findSub, i, len, pushMessage, sub;
 
   $ = jQuery;
 
   window.subscriptions = [
     {
       name: "general",
-      channel: pusher.subscribe('private-general'),
       description: "This channel is for team-wide communication and announcements. All team members are in this channel."
     }, {
       name: "random",
-      channel: pusher.subscribe('private-random'),
       description: "A place for non-work banter, links, articles of interest, humor or anything else which you'd like concentrated in some place other than work-related channels."
+    }, {
+      name: "yac",
+      description: "Yet Another Channel."
+    }, {
+      name: "music",
+      description: "A place to discuss great music."
     }
   ];
+
+  for (i = 0, len = subscriptions.length; i < len; i++) {
+    sub = subscriptions[i];
+    sub.channel = pusher.subscribe("private-" + sub.name);
+  }
 
   pusher.bind("client-new-message", function(data) {
     return displayMessage($.parseJSON(event.data).channel, data);
   });
 
   findSub = function(channelName) {
-    var sub;
     return ((function() {
-      var i, len, results;
+      var j, len1, results;
       results = [];
-      for (i = 0, len = subscriptions.length; i < len; i++) {
-        sub = subscriptions[i];
+      for (j = 0, len1 = subscriptions.length; j < len1; j++) {
+        sub = subscriptions[j];
         if (sub.channel.name === channelName) {
           results.push(sub);
         }
