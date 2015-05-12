@@ -66,7 +66,7 @@
       if ($.embedly.defaults.key) {
         return link.embedly({
           query: {
-            maxwidth: 600
+            maxwidth: 400
           }
         });
       }

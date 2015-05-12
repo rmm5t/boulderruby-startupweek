@@ -37,7 +37,7 @@ displayMessage = (channelName, data) ->
   else if data.body.match /^http[^\s<>]+$/
     link = $("<a class='oembed' href='#{data.body}' target='_blank'>#{data.body}</a>")
     messages.append($("<p></p>").append(link))
-    link.embedly(query: { maxwidth: 600 }) if $.embedly.defaults.key
+    link.embedly(query: { maxwidth: 400 }) if $.embedly.defaults.key
   else
     messages.append($("<p></p>").text(data.body))
 
