@@ -2,8 +2,6 @@ require "bundler/setup"
 Bundler.require(:pusher)
 require "yaml"
 
-# Pusher configured via ENV["PUSHER_URL"]
-
 set :public_folder, "./"
 
 get "/" do
@@ -18,7 +16,7 @@ end
 get "/config.js" do
   content_type :js
   <<-EOF
-window.pusher = new Pusher("#{Pusher.default_client.key}");
-jQuery.embedly.defaults.key = "#{ENV["EMBEDLY_KEY"]}";
-EOF
+    window.pusher = new Pusher("#{Pusher.default_client.key}");
+    jQuery.embedly.defaults.key = "#{ENV["EMBEDLY_KEY"]}";
+  EOF
 end
