@@ -23,7 +23,7 @@ Presented to [Boulder Ruby, May 2015](http://www.meetup.com/boulder_ruby_group/e
 * [Rollbar](https://rollbar.com/) / [Honeybadger](https://www.honeybadger.io/)
 * [Papertrail](https://papertrailapp.com/)
 * [StatusPage.io](https://www.statuspage.io/)
-* [Pingdom](https://www.pingdom.com/) / [StatusCake](https://www.statuscake.com/)
+* [Pingdom](https://www.pingdom.com/) / [StatusCake](https://www.statuscake.com/) / [Uptime Robot](http://uptimerobot.com/) / [Monitority](http://monitority.com/)
 * [DNSimple](https://dnsimple.com/r/fb212a64f8e1b6) / [DNS Made Easy](http://www.dnsmadeeasy.com/) / [Dyn](http://dyn.com/)
 
 ## Cloudinary Demo
