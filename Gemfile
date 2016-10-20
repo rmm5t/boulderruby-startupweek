@@ -17,3 +17,5 @@ group :pusher do
   gem "sinatra"
   gem "pusher"
 end
+
+gem "puma", require: false # for puma-dev
